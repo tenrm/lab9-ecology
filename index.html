@@ -53,6 +53,10 @@ img,svg{max-width:100%}
 
 /* page header */
 .top{display:flex;flex-direction:column;gap:12px}
+.toprow{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
+.visits{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:3px 12px 3px 10px;margin:0}
+.visits svg{width:16px;height:16px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.visits b{color:var(--fg);font-weight:600;font-size:14px}
 .eyebrow{font-family:var(--f-display);font-weight:600;font-size:13px;letter-spacing:.06em;color:var(--accent)}
 .top h1{font-size:clamp(28px,5vw,40px);font-weight:700}
 .lead{max-width:66ch}
@@ -273,7 +277,7 @@ footer ul{margin:0;padding-left:1.2em}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--muted)"/></marker><marker id="arra" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--accent)"/></marker></defs></svg>
 <div class="wrap">
 <header class="top">
-  <p class="eyebrow">2303108 ปฏิบัติการชีววิทยาทั่วไป</p>
+  <div class="toprow"><p class="eyebrow">2303108 ปฏิบัติการชีววิทยาทั่วไป</p><p class="visits" id="visits" hidden aria-live="polite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><span>ผู้เข้าชม</span><b class="mono">–</b><span>ครั้ง</span></p></div>
   <h1>ปฏิบัติการที่ 9 นิเวศวิทยา</h1>
   <p class="lead">ผังขั้นตอนพร้อมภาพประกอบของทั้ง 4 กิจกรรม: คุณสมบัติของน้ำ, สายใยอาหาร, การขยายทางชีวภาพของไมโครพลาสติก และบริการของระบบนิเวศอุทยาน 100 ปี</p>
   <p class="note">แบ่งเป็น 2 กลุ่มย่อย อภิปรายและตอบคำถามในรายงาน แล้วส่งท้ายปฏิบัติการ · ติ๊ก “ทำขั้นนี้แล้ว” เพื่อติดตามความคืบหน้า (บันทึกไว้ในเบราว์เซอร์ของนิสิตเท่านั้น)</p>
@@ -1301,6 +1305,30 @@ footer ul{margin:0;padding-left:1.2em}
   }
   var btn=document.getElementById('sim-run');
   if(btn){btn.addEventListener('click',runSim);runSim();}
+})();
+
+</script>
+<script>
+/* visitor counter (GitHub Pages only): counts once per browser session via abacus.jasoncameron.dev */
+(function(){
+  var el=document.getElementById('visits'); if(!el||!window.fetch)return;
+  var NS='tenrm-lab9-ecology', KEY='visits', FLAG='lab9-counted';
+  var counted=false;
+  try{counted=sessionStorage.getItem(FLAG)==='1';}catch(e){}
+  var url='https://abacus.jasoncameron.dev/'+(counted?'get/':'hit/')+NS+'/'+KEY;
+  var ctl=window.AbortController?new AbortController():null;
+  var timer=setTimeout(function(){if(ctl)ctl.abort();},6000);
+  fetch(url,ctl?{signal:ctl.signal,cache:'no-store'}:{cache:'no-store'})
+    .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
+    .then(function(d){
+      clearTimeout(timer);
+      var n=Number(d&&d.value);
+      if(!isFinite(n))throw new Error('bad');
+      el.querySelector('b').textContent=n.toLocaleString('en-US');
+      el.hidden=false;
+      try{sessionStorage.setItem(FLAG,'1');}catch(e){}
+    })
+    .catch(function(){clearTimeout(timer);el.hidden=true;});
 })();
 
 </script>
