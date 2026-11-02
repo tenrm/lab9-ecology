@@ -197,6 +197,14 @@ details.ref[open] summary{border-bottom:1px solid var(--rule)}
 .scale li.on{background:var(--accent-soft);font-weight:600}
 .ex{font-size:13px;color:var(--muted)}
 
+/* food web submission link */
+.submit{margin-left:54px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:12px;padding:12px 16px}
+.submit-text{display:flex;flex-direction:column;gap:2px;min-width:0;font-size:14px}
+.submit-text b{font-family:var(--f-display);font-weight:600;font-size:16px;color:var(--fg)}
+.submit-text .mono{display:block;font-size:13px;overflow-wrap:anywhere}
+.submit-btn{text-decoration:none;display:inline-block;white-space:nowrap}
+@media (max-width:420px){.submit{margin-left:40px}}
+
 /* bead simulator */
 .sim{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;margin-left:54px}
 .sim h4{font-size:17px;font-weight:600}
@@ -813,6 +821,10 @@ footer ul{margin:0;padding-left:1.2em}
   </li>
 
   <li class="phase"><span class="tag">C</span><div><h3>สร้างสายใยอาหาร</h3></div></li>
+  <li class="submit" id="a2-submit">
+    <div class="submit-text"><b>ส่งงาน Food web (งานเดี่ยว)</b><span>นิสิตทุกคนส่งสายใยอาหารของตัวเองที่ <span class="mono">tenrm.github.io/foodweb-pond100</span></span></div>
+    <a class="btn submit-btn" href="https://tenrm.github.io/foodweb-pond100/" target="_blank" rel="noopener">เปิดหน้าส่งงาน →</a>
+  </li>
 
   <li class="step" id="a2s3">
     <div class="num">3</div>
